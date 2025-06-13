@@ -5,7 +5,7 @@ Configuration file for Crypto Market Monitor
 import os
 from datetime import time
 
-# API Credentials
+# API Credentials - These can be set as environment variables or left as None for demo mode
 BYBIT_API_KEY = os.environ.get('BYBIT_API_KEY')
 BYBIT_API_SECRET = os.environ.get('BYBIT_API_SECRET')
 GOOGLE_SHEETS_CREDS = os.environ.get('GOOGLE_SHEETS_CREDS')
@@ -13,6 +13,18 @@ EMAIL_SENDER = os.environ.get('EMAIL_SENDER')
 EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_RECIPIENTS = os.environ.get('EMAIL_RECIPIENTS', '').split(',')
 TRADING_ECONOMICS_KEY = os.environ.get('TRADING_ECONOMICS_KEY')
+
+# Demo mode settings - used when API credentials are not available
+DEMO_MODE = any(cred is None for cred in [BYBIT_API_KEY, BYBIT_API_SECRET, TRADING_ECONOMICS_KEY])
+
+# Mock data for demo mode
+MOCK_PRICES = {
+    'BTCUSDT': 62430.45,
+    'ETHUSDT': 3785.22,
+    'SOLUSDT': 148.75,
+    'XRPUSDT': 0.59,
+    'BNBUSDT': 585.35
+}
 
 # Google Sheets Configuration
 SPREADSHEET_ID = '1yQRWSt7bAv0u2MmzWtfD5TkfMCZl7PHMynTAViWUtRg'
